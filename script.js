@@ -6,7 +6,7 @@ const PORTFOLIO = {
   github: "https://github.com/Adekojo-Israel",
   linkedin: "https://www.linkedin.com/in/israel-adekojo-798331338/",
   whatsapp: "https://wa.me/2348087501784",
-  portrait: "IMG-israel.jpg"
+  portrait: "img/IMG-israel.jpg"
 };
 
 const projects = [
@@ -694,6 +694,36 @@ function initScrollEffects() {
   }
 }
 
+/* Back to Top button */
+
+function initBackToTop() {
+  const button = $("#backToTop");
+
+  if (!button) {
+    console.warn("Back to Top button not found.");
+    return;
+  }
+
+  const updateButton = () => {
+    button.classList.toggle("visible", window.scrollY > 300);
+  };
+
+  window.addEventListener("scroll", updateButton, {
+    passive: true
+  });
+
+  button.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: matchMedia("(prefers-reduced-motion: reduce)").matches
+        ? "auto"
+        : "smooth"
+    });
+  });
+
+  updateButton();
+}
+
 /* Start the portfolio */
 
 function init() {
@@ -704,6 +734,7 @@ function init() {
   initContact();
   initDialogs();
   initScrollEffects();
+  initBackToTop();
 
   const year = $("#currentYear");
 
@@ -712,8 +743,25 @@ function init() {
   }
 }
 
+/* Run initialization safely */
+
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", init);
 } else {
   init();
 }
+
+
+/* Fix footer Back to Top link */
+
+document.querySelectorAll('a[href="#top"]').forEach(link => {
+  link.addEventListener("click", event => {
+    event.preventDefault();
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  });
+});
