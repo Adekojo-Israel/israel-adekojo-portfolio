@@ -6,7 +6,7 @@ const PORTFOLIO = {
   github: "https://github.com/Adekojo-Israel",
   linkedin: "https://www.linkedin.com/in/israel-adekojo-798331338/",
   whatsapp: "https://wa.me/2348087501784",
-  portrait: ""
+  portrait: "img/IMG-israel.jpg"
 };
 
 const projects = [
