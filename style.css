@@ -1471,6 +1471,10 @@ kbd {
   .command-foot {
     font-size:8px
   }
+  .back-to-top {
+  right: 12px;
+  bottom: 68px;
+}
 }
 @media(prefers-reduced-motion:reduce) {
   *,*::before,*::after {
@@ -1546,3 +1550,46 @@ kbd {
   @keyframes intent-glow { from { text-shadow:0 0 0 rgba(182,255,87,0); } to { text-shadow:0 0 24px rgba(182,255,87,.2); } }
 }
 html[data-theme="light"] .intent-visual { color:#f5f7ef; background:radial-gradient(ellipse at 82% 48%, rgba(182,255,87,.12), transparent 36%), linear-gradient(135deg,#111510,#080a08); }
+
+.back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 78px;
+  z-index: 9999;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #39ff14;
+  border-radius: 50%;
+  background: #101010;
+  color: #39ff14;
+  font-size: 26px;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: #39ff14;
+  color: #101010;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top {
+    transition: none;
+  }
+}
+  
